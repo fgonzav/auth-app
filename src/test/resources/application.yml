@@ -1,0 +1,7 @@
+ldap:
+  #url: ldap://host.docker.internal:389
+  url: ldap://localhost:389
+  base: dc=secretkeeper,dc=com
+  userDn: ou=Users
+jwt:
+  secret: s3cr3t$%#s5cr5tlchd8i99ehj2h28d778chbswu7s9qu22bdhha9
