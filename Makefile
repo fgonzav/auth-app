@@ -13,5 +13,11 @@ build-image: build-artifact
 run: build-image
 	docker run -d --name auth-service -p 8080:8080 --rm $(TAG)
 
+create: build-image
+	kubectl create -f k8s/auth-service.yml
+
+redeploy: build-image
+	kubectl delete pods -l app=auth-service
+
 stop:
 	docker stop auth-service
