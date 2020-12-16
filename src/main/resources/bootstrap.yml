@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: authapp
+  cloud:
+    config:
+      uri: http://config-svc:8888

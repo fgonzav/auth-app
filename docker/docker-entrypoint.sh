@@ -2,6 +2,6 @@
 
 cd /opt/app || exit
 
-JAR=$(ls auth-service*.jar)
+JAR=$(ls authapp*.jar)
 
 java -jar "$JAR" --spring.profiles.active=dev

@@ -1,0 +1,6 @@
+ldap:
+  url: ldap://default
+  base: dc=secretkeeper,dc=com
+  userDn: ou=Users
+jwt:
+  secret: secret
