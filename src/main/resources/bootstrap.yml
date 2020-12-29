@@ -1,6 +1,18 @@
 spring:
+  profiles:
+    - dev
+  application:
+    name: authapp
+  cloud:
+    config:
+      uri: http://localhost:31027
+---
+spring:
+  profiles:
+    - prod
   application:
     name: authapp
   cloud:
     config:
       uri: http://config-svc:8888
+

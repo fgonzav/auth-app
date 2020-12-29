@@ -4,9 +4,9 @@ import com.secretkeeper.authservice.configuration.properties.LdapProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.ldap.repository.config.EnableLdapRepositories;
 import org.springframework.ldap.core.ContextSource;
 import org.springframework.ldap.core.LdapTemplate;
+import org.springframework.ldap.core.support.BaseLdapPathContextSource;
 import org.springframework.ldap.core.support.LdapContextSource;
 
 @Configuration
@@ -16,7 +16,7 @@ public class LdapConfiguration {
     private LdapProperties properties;
 
     @Bean
-    public ContextSource contextSource(){
+    public BaseLdapPathContextSource contextSource(){
         LdapContextSource contextSource = new LdapContextSource();
         contextSource.setAnonymousReadOnly(true);
         contextSource.setUrl(properties.getUrl());

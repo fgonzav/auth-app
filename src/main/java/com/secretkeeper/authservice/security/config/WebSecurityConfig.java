@@ -9,24 +9,24 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.ldap.authentication.LdapAuthenticationProvider;
 
 @EnableWebSecurity
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private LdapAuthenticationProvider ldapAuthenticationProvider;
-    private JwtAuthEntryPoint entryPoint;
+    private final LdapAuthenticationProvider authenticatorProvider;
+    private final JwtAuthEntryPoint entryPoint;
 
-    public WebSecurityConfig(LdapAuthenticationProvider ldapAuthenticationProvider,
+    public WebSecurityConfig(LdapAuthenticationProvider authenticatorProvider,
                              JwtAuthEntryPoint entryPoint) {
-        this.ldapAuthenticationProvider = ldapAuthenticationProvider;
+        this.authenticatorProvider = authenticatorProvider;
         this.entryPoint = entryPoint;
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(ldapAuthenticationProvider);
+        auth.authenticationProvider(authenticatorProvider);
     }
 
     @Override
@@ -44,7 +44,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // Add a filter to validate the tokens with every request
         //httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }
-
 
     @Bean
     @Override
