@@ -27,9 +27,7 @@ public class LdapAuthenticator{
 
     @Bean
     public LdapAuthoritiesPopulator authoritiesPopulator(ContextSource contextSource){
-        DefaultLdapAuthoritiesPopulator populator = new DefaultLdapAuthoritiesPopulator(contextSource,"ou=Groups");
-
-        return populator;
+        return new DefaultLdapAuthoritiesPopulator(contextSource,"ou=Groups");
     }
 
     @Bean
